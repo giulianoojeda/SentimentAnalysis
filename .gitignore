@@ -1,0 +1,8 @@
+#.venv folder
+.venv
+# __pycache__ folder
+src/__pycache__
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+# Contents of dataset folder
+dataset/*

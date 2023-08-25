@@ -34,8 +34,7 @@ def remove_html_tags(text: str) -> str:
         str
             Output string.
     """
-    # TODO
-    raise NotImplementedError
+    text = BeautifulSoup(text, "html.parser").get_text()
 
 
 def stem_text(text: str) -> str:
@@ -53,8 +52,9 @@ def stem_text(text: str) -> str:
         str
             Output string.
     """
-    # TODO
-    raise NotImplementedError
+    stemmer = nltk.stem.PorterStemmer()
+
+    return " ".join([stemmer.stem(word) for word in nltk.tokenize.word_tokenize(text)])
 
 
 def lemmatize_text(text: str) -> str:
@@ -71,8 +71,9 @@ def lemmatize_text(text: str) -> str:
         str
             Output string.
     """
-    # TODO
-    raise NotImplementedError
+    doc = nlp(text)
+
+    return " ".join([token.lemma_ for token in doc])
 
 
 def remove_accented_chars(text: str) -> str:
@@ -87,8 +88,11 @@ def remove_accented_chars(text: str) -> str:
         str
             Output string.
     """
-    # TODO
-    raise NotImplementedError
+    return (
+        unicodedata.normalize("NFD", text)
+        .encode("ascii", "ignore")
+        .decode("utf-8", "ignore")
+    )
 
 
 def remove_special_chars(text: str, remove_digits: Optional[bool] = False) -> str:
@@ -105,8 +109,7 @@ def remove_special_chars(text: str, remove_digits: Optional[bool] = False) -> st
         str
             Output string.
     """
-    # TODO
-    raise NotImplementedError
+    return re.sub(r"[^a-zA-Z0-9\s]" if not remove_digits else r"[^a-zA-Z\s]", "", text)
 
 
 def remove_stopwords(
@@ -131,8 +134,15 @@ def remove_stopwords(
         str
             Output string.
     """
-    # TODO
-    raise NotImplementedError
+    tokenizer = ToktokTokenizer()
+    tokens = tokenizer.tokenize(text)
+    tokens = [token.strip() for token in tokens]
+
+    if is_lower_case:
+        filtered_tokens = [token for token in tokens if token.lower() not in stopwords]
+    else:
+        filtered_tokens = [token for token in tokens if token not in stopwords]
+    return " ".join(filtered_tokens)
 
 
 def remove_extra_new_lines(text: str) -> str:
@@ -147,8 +157,7 @@ def remove_extra_new_lines(text: str) -> str:
         str
             Output string.
     """
-    # TODO
-    raise NotImplementedError
+    return re.sub(r"\r|\n|\r\n", " ", text)
 
 
 def remove_extra_whitespace(text: str) -> str:
@@ -163,8 +172,7 @@ def remove_extra_whitespace(text: str) -> str:
         str
             Output string.
     """
-    # TODO
-    raise NotImplementedError
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def expand_contractions(text, contraction_mapping=CONTRACTION_MAP) -> str:
