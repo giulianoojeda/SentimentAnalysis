@@ -27,5 +27,31 @@ def vectorizer(
             A 2D numpy array where each row represents the vectorized form of a
             document in the corpus.
     """
-    # TODO
-    raise NotImplementedError
+    corpus_vectors = []  # Initialize empty list to store the vectors for all documents
+
+    # Iterate over all documents in corpus
+    for doc in corpus:
+        # Initialize empty array to store the vector representation of the document
+        word_vectors = np.zeros((len(doc), num_features))
+        # Initialize counter to keep track of the number of words in the document
+        word_count = 0
+        # Iterate over all words in the document
+        for idx, word in enumerate(doc):
+            # Check if the word is present in the vocabulary
+            if word in model.wv.vocab:
+                # If yes, then add its vector to the word_vectors array
+                word_vectors[idx] = model.wv[word]
+                # Increment the counter by 1
+                word_count += 1
+
+        # Compute the average by dividing the sum of all word vectors by the number of words
+        if word_count == 0:
+            avg_vector = np.zeros((num_features,))
+        else:
+            avg_vector = np.mean(word_vectors, axis=0)
+
+        # Append the average vector to the list of vectors
+        corpus_vectors.append(avg_vector)
+
+    # Convert the list of vectors to a 2D array and return it
+    return np.array(corpus_vectors)

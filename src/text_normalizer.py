@@ -34,7 +34,7 @@ def remove_html_tags(text: str) -> str:
         str
             Output string.
     """
-    text = BeautifulSoup(text, "html.parser").get_text()
+    return BeautifulSoup(text, "html.parser").get_text()
 
 
 def stem_text(text: str) -> str:
