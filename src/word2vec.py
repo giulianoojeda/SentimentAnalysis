@@ -38,7 +38,7 @@ def vectorizer(
         # Iterate over all words in the document
         for idx, word in enumerate(doc):
             # Check if the word is present in the vocabulary
-            if word in model.wv.vocab:
+            if word in model.wv:
                 # If yes, then add its vector to the word_vectors array
                 word_vectors[idx] = model.wv[word]
                 # Increment the counter by 1
