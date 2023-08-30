@@ -1,11 +1,16 @@
 #.venv folder
 .venv
-# __pycache__ folder
-src/__pycache__
+# all pycache
+__pycache__/
+
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints
+
 # Contents of dataset folder
-dataset/*
+dataset/**/*
 
 # ignore pycache folder recursively
 **/__pycache__/*
+
+# ignore all pytest cache
+.pytest_cache/*

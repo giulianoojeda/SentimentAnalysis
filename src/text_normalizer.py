@@ -138,10 +138,7 @@ def remove_stopwords(
     tokens = tokenizer.tokenize(text)
     tokens = [token.strip() for token in tokens]
 
-    if is_lower_case:
-        filtered_tokens = [token for token in tokens if token.lower() not in stopwords]
-    else:
-        filtered_tokens = [token for token in tokens if token not in stopwords]
+    filtered_tokens = [token for token in tokens if token.lower() not in stopwords]
     return " ".join(filtered_tokens)
 
 

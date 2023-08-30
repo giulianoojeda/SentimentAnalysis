@@ -46,9 +46,13 @@ def vectorizer(
 
         # Compute the average by dividing the sum of all word vectors by the number of words
         if word_count == 0:
-            avg_vector = np.zeros((num_features,))
+            avg_vector = np.zeros(
+                (num_features,)
+            )  # If no word is present in the vocabulary, then return a vector of zeros
         else:
-            avg_vector = np.mean(word_vectors, axis=0)
+            avg_vector = np.mean(
+                word_vectors, axis=0
+            )  # Else, return the average vector of the document
 
         # Append the average vector to the list of vectors
         corpus_vectors.append(avg_vector)
