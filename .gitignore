@@ -7,7 +7,8 @@ __pycache__/
 .ipynb_checkpoints
 
 # Contents of dataset folder
-dataset/**/*
+dataset/movies_review_test_aai.csv
+dataset/movies_review_train_aai.csv
 
 # ignore pycache folder recursively
 **/__pycache__/*
