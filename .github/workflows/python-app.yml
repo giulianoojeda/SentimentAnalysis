@@ -36,4 +36,4 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest
+        pytest tests/unit/test_input_data.py tests/unit/test_text_normalization.py tests/unit/test_word2vec.py

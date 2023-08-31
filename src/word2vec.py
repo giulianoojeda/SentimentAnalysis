@@ -93,4 +93,4 @@ def vectorizer_w2v_v2(corpus, model, num_features):
         corpus_vectors.append(avg_vector)
 
     # Convert the list of vectors to a 2D array and return it
-    return np.array(corpus_vectors)    
+    return np.array(corpus_vectors)
